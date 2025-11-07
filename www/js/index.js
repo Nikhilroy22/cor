@@ -1,29 +1,33 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-
-// Wait for the deviceready event before using any of Cordova's device APIs.
-// See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
-document.addEventListener('deviceready', onDeviceReady, false);
-
-function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
-
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
+function addItem() {
+  const input = document.getElementById('item');
+  let items = JSON.parse(localStorage.getItem('items') || '[]');
+  items.push(input.value);
+  localStorage.setItem('items', JSON.stringify(items));
+  input.value = '';
+  renderItems();
 }
+
+function deleteItem(index) {
+  let items = JSON.parse(localStorage.getItem('items') || '[]');
+  items.splice(index, 1);
+  localStorage.setItem('items', JSON.stringify(items));
+  renderItems();
+}
+
+function renderItems() {
+  let items = JSON.parse(localStorage.getItem('items') || '[]');
+  const list = document.getElementById('itemList');
+  list.innerHTML = '';
+  items.forEach((item, index) => {
+    const li = document.createElement('li');
+    li.textContent = item + ' ';
+    const delBtn = document.createElement('button');
+    delBtn.textContent = 'Delete';
+    delBtn.onclick = () => deleteItem(index);
+    li.appendChild(delBtn);
+    list.appendChild(li);
+  });
+}
+
+// Initial render
+renderItems();
