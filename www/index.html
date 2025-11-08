@@ -3,41 +3,11 @@
 <head>
    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
   <title>CRUD App</title>
-  <!-- Include Ionic CSS & JS in <head> -->
-<link href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" rel="stylesheet">
-<script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
   
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <ion-app>
-  <!-- Top Navbar -->
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>My Cordova App</ion-title>
-      <ion-buttons slot="end">
-        <ion-button onclick="alert('Settings clicked')">
-          <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
-  <!-- Main Content -->
-  <ion-content class="ion-padding">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Welcome</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        This is a Cordova app with Ionic top navbar.
-      </ion-card-content>
-    </ion-card>
-
-    <ion-button expand="block" onclick="alert('Button clicked!')">Click Me</ion-button>
-  </ion-content>
-</ion-app>
+   <script src="cordova.js"></script>
 <script>
   document.addEventListener('deviceready', function() {
 StatusBar.hide();
